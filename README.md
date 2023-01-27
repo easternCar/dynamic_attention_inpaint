@@ -8,7 +8,14 @@ Deep neural advancements have recently brought remarkable image synthesis perfor
 
 <p align="center"><img src="samples/sample_img.png" width="720"\></p>
 
-Will be updated soon........
+We have two types of masks (fixed/random). We have 4,000 samples of random masks from [Here](https://drive.google.com/file/d/120eCnAaK-BHdkLlw_LZ89rvTCgkU0kep/view?usp=sharing). Default random mask directory's name is 'rand_masks'.
+
+```
+$ unzip dam_rand_masks.zip
+```
+
+In **'configs/config.yaml**, you can change the random mask directory from **'rand_mask_path'**.
+
 
 ## Acknowledgement
  + Most functions are brought from Contextual Attention(https://github.com/daa233/generative-inpainting-pytorch). 

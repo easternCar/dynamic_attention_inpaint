@@ -15,13 +15,12 @@ discriminator_type: 'free_patch'
 
 generator_type : 'our_parse_fix'
 batch_size: 8
-#batch_size: 150
 #batch_size: 90
 
 # ---------- MASK FROM FILES
 mask_type: 'FIX'
-fix_mask_path: 'data/box.png' # fix
-rand_mask_path: '----'
+fix_mask_path: 'data/box.png' # fixed mask file
+rand_mask_path: 'rand_masks' # random masks directory
 
 image_shape: [128, 128, 3]
 
