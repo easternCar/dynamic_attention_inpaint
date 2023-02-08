@@ -1,49 +1,47 @@
 # data parameters
-dataset_name: CELEBA
+dataset_name: CELEBAHQ
 data_with_subfolder: False
+gpu_ids: [0,1]    # set the GPU ids to use, e.g. [0] or [1, 2]
 
-data_path: D:/db/celebaHQ/CelebAMask-HQ/CelebA-HQ-img   # celeba
-#data_path: /home/cardongmin/db/place2/train_chosen  #place2
-resume: #check_celeba_rand
-resume_iter: 200000
-checkpoints: checkpt_celeb
+#----------- <TRANING CONFIG>
+data_path: /home/db/celebahq/train   # dataset path for [TRAINING]
+resume: check_celebahq_fix      # path for 'loading' pre-trained checkpoint for [TRAINING]
+resume_iter: 90000             # iteration number of checkpoint file in resume 
+checkpoints: checkpt_celebahq   # path for 'saving' checkpoint during [TRAINING]
+batch_size: 120             # batch size for [TRAINING]
+niter: 200000               # iteration for [TRAINING]
 
-
-use_guidance: False
-# sn_patchgan, free_patch, orig_patch
-discriminator_type: 'free_patch'
-
-generator_type : 'our_parse_fix'
-batch_size: 8
-#batch_size: 90
+#----------- <TEST CONFIG>
+test_data_path: /home/db/celebahq/val   # dataset path for [INFERENCE]
+test_checkpoints: check_celebahq_fix   # checkpoint for [INFERENCE]
+test_resume_iter: 90000        # iteration to load for [INFERENCE]
+test_batch_size: 8     # batch size for [INFERENCE]
+test_save_path: reconstructed/outputs   # path to save reconstructed outputs during [INFERENCE]
 
 # ---------- MASK FROM FILES
 mask_type: 'FIX'
-fix_mask_path: 'data/box.png' # fixed mask file
-rand_mask_path: 'rand_masks' # random masks directory
+fix_mask_path: 'data/box.png' # fix
+rand_mask_path: 'rand_masks'
 
-image_shape: [128, 128, 3]
-
+# visualization and saving
+snapshot_save_iter: 5000  # checkpoint saving iter
+print_iter: 200     # training log
+viz_iter: 2000      # visualization (saved in checkpoint directory)
+viz_max_out: 12     # visualization num of imgs
 
 # training parameters
+image_shape: [128, 128, 3]
 expname: benchmark_rand
 cuda: True
-gpu_ids: [0]    # set the GPU ids to use, e.g. [0] or [1, 2]
 num_workers: 0
 lr: 0.0001
 lr_decay: 0.95
 momentum: 0.95
 
-
 weight_decay: 0.0005
 beta1: 0.5
 beta2: 0.9
-niter: 400000
-print_iter: 200
-#viz_iter: 100
-viz_iter: 2000
-viz_max_out: 12
-snapshot_save_iter: 5000
+
 
 # loss weight
 coarse_l1_alpha: 1.2
@@ -55,7 +53,7 @@ global_wgan_loss_alpha: 1.
 gan_loss_alpha: 0.001
 wgan_gp_lambda: 10
 attention_alpha: 0.001
-percep_alpha: 0.01   # when percep is used
+percep_alpha: 0.01  
 
 
 # network parameters
